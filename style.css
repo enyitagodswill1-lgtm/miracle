@@ -1,0 +1,1414 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --purple: #9b5cff;
+    --pink: #ff4fd8;
+    --cyan: #00d9ff;
+    --dark: #070710;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: "Inter", sans-serif;
+    background: var(--dark);
+    color: white;
+}
+
+/* =========================
+   BACKGROUND GLOW
+========================= */
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    top: -180px;
+    left: -150px;
+    background: rgba(155, 92, 255, 0.18);
+    filter: blur(120px);
+    border-radius: 50%;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 450px;
+    height: 450px;
+    right: -150px;
+    bottom: -150px;
+    background: rgba(255, 79, 216, 0.12);
+    filter: blur(120px);
+    border-radius: 50%;
+}
+
+/* =========================
+   STARS
+========================= */
+
+.stars {
+    position: fixed;
+    inset: 0;
+    background-image:
+        radial-gradient(circle, rgba(255,255,255,.8) 1px, transparent 1px),
+        radial-gradient(circle, rgba(0,217,255,.5) 1px, transparent 1px);
+    background-size: 90px 90px, 140px 140px;
+    background-position: 10px 20px, 50px 80px;
+    opacity: .25;
+    animation: starsMove 20s linear infinite;
+}
+
+@keyframes starsMove {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-90px);
+    }
+}
+
+/* =========================
+   WELCOME
+========================= */
+
+.welcome {
+    position: relative;
+    z-index: 2;
+
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 30px;
+
+    animation: fadeIn 1.5s ease;
+}
+
+.small-text {
+    color: #aaaabc;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+
+    margin-bottom: 22px;
+
+    animation: slideUp 1s ease;
+}
+
+h1 {
+    font-size: clamp(45px, 8vw, 82px);
+    line-height: 1;
+    letter-spacing: -4px;
+    margin-bottom: 25px;
+}
+
+h1 span {
+    background: linear-gradient(
+        90deg,
+        var(--purple),
+        var(--cyan),
+        var(--pink)
+    );
+
+    background-size: 200%;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation: gradientMove 4s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0%;
+    }
+
+    50% {
+        background-position: 100%;
+    }
+
+    100% {
+        background-position: 0%;
+    }
+}
+
+.welcome p {
+    color: #a5a5b8;
+    font-size: 18px;
+    margin-bottom: 35px;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+#openBtn {
+    border: none;
+
+    padding: 15px 25px;
+
+    border-radius: 50px;
+
+    color: white;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+
+    background: linear-gradient(
+        135deg,
+        var(--purple),
+        var(--pink)
+    );
+
+    box-shadow:
+        0 0 25px rgba(155, 92, 255, .25),
+        0 0 50px rgba(255, 79, 216, .08);
+
+    cursor: pointer;
+
+    transition: .3s ease;
+}
+
+#openBtn span {
+    display: inline-block;
+    margin-left: 8px;
+    transition: .3s ease;
+}
+
+#openBtn:hover {
+    transform: translateY(-4px) scale(1.03);
+
+    box-shadow:
+        0 0 30px rgba(155, 92, 255, .4),
+        0 0 60px rgba(255, 79, 216, .15);
+}
+
+#openBtn:hover span {
+    transform: translateX(5px);
+}
+
+#openBtn:active {
+    transform: scale(.97);
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 500px) {
+
+    .welcome {
+        padding: 25px;
+    }
+
+    .small-text {
+        font-size: 11px;
+        letter-spacing: 2px;
+    }
+
+    h1 {
+        font-size: 48px;
+        letter-spacing: -2px;
+    }
+
+    .welcome p {
+        font-size: 16px;
+    }
+
+    #openBtn {
+        padding: 14px 22px;
+    }
+}
+/* ========================================
+   SCENE TRANSITIONS
+======================================== */
+
+.welcome {
+    transition: opacity .7s ease;
+}
+
+.fade-out {
+    opacity: 0 !important;
+}
+
+
+/* ========================================
+   SCENE TWO
+======================================== */
+
+.scene-two,
+.scene-three,
+.final-scene {
+    max-width: 750px;
+    width: 100%;
+    text-align: center;
+    animation: sceneAppear 1s ease;
+}
+
+.tiny-label {
+    color: #9f9fb5;
+    font-size: 11px;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+}
+
+.scene-two h2 {
+    font-size: clamp(35px, 6vw, 60px);
+    letter-spacing: -2px;
+    min-height: 70px;
+}
+
+..three-words {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+
+    margin: 35px 0;
+
+    opacity: 1;
+}
+
+.three-words span {
+    padding: 12px 18px;
+
+    border-radius: 50px;
+
+    border: 1px solid rgba(155, 92, 255, .35);
+
+    background: rgba(155, 92, 255, .08);
+
+    color: #d6c3ff;
+
+    opacity: 0;
+    transform: translateY(20px) scale(.9);
+
+    animation: wordReveal .8s ease forwards;
+}
+
+.three-words span:nth-child(1) {
+    animation-delay: .2s;
+}
+
+.three-words span:nth-child(2) {
+    animation-delay: .7s;
+}
+
+.three-words span:nth-child(3) {
+    animation-delay: 1.2s;
+}
+
+@keyframes wordReveal {
+
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(.9);
+    }
+
+    70% {
+        transform: translateY(-4px) scale(1.03);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+.three-words span {
+    padding: 12px 18px;
+
+    border-radius: 50px;
+
+    border: 1px solid rgba(155, 92, 255, .3);
+
+    background: rgba(155, 92, 255, .08);
+
+    color: #d6c3ff;
+
+    box-shadow:
+        0 0 20px rgba(155, 92, 255, .08);
+}
+
+#sceneMessage {
+    color: #b0b0c2;
+    font-size: 18px;
+    min-height: 30px;
+    margin-bottom: 35px;
+}
+
+
+/* ========================================
+   SCENE THREE
+======================================== */
+
+.scene-three h2 {
+    font-size: clamp(38px, 6vw, 65px);
+    line-height: 1.1;
+    margin-bottom: 25px;
+}
+
+.scene-three h2 span {
+    display: block;
+
+    background: linear-gradient(
+        90deg,
+        #9b5cff,
+        #ff4fd8
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.scene-three p {
+    color: #a6a6b8;
+    font-size: 18px;
+    margin-bottom: 35px;
+}
+
+
+/* ========================================
+   FINAL SCENE
+======================================== */
+
+.final-scene h1 {
+    font-size: clamp(42px, 7vw, 75px);
+    line-height: 1.05;
+}
+
+.final-scene h1 span {
+    display: block;
+
+    background: linear-gradient(
+        90deg,
+        #9b5cff,
+        #00d9ff,
+        #ff4fd8
+    );
+
+    background-size: 200%;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation: gradientMove 4s infinite;
+}
+
+.final-scene p {
+    margin: 30px auto;
+    color: #aaaabc;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+
+/* ========================================
+   PARTICLES
+======================================== */
+
+.particle {
+    position: fixed;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    opacity: .35;
+
+    pointer-events: none;
+
+    animation: floatParticle 6s ease-in-out infinite;
+}
+
+@keyframes floatParticle {
+
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    30% {
+        opacity: .5;
+    }
+
+    70% {
+        opacity: .25;
+    }
+
+    100% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+}
+
+
+@keyframes sceneAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* ========================================
+   FINAL BACKGROUND
+======================================== */
+
+.final-background {
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            rgba(155,92,255,.18),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 70% 70%,
+            rgba(255,79,216,.15),
+            transparent 35%
+        ),
+        #070710;
+}
+/* ========================================
+   NEW ROMANTIC SCENE STYLES
+======================================== */
+
+.scene-two button,
+.scene-three button,
+.final-scene button {
+    border: none;
+    padding: 15px 25px;
+    border-radius: 50px;
+
+    color: white;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+
+    background: linear-gradient(
+        135deg,
+        var(--purple),
+        var(--pink)
+    );
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 25px rgba(155, 92, 255, .25),
+        0 0 50px rgba(255, 79, 216, .08);
+
+    transition: .3s ease;
+}
+
+.scene-two button:hover,
+.scene-three button:hover,
+.final-scene button:hover {
+    transform: translateY(-4px) scale(1.03);
+
+    box-shadow:
+        0 0 35px rgba(155, 92, 255, .4),
+        0 0 70px rgba(255, 79, 216, .15);
+}
+
+.scene-two button:active,
+.scene-three button:active,
+.final-scene button:active {
+    transform: scale(.96);
+}
+
+
+/* Scene two message */
+
+#sceneMessage {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+}
+
+
+/* Scene three */
+
+.scene-three p {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8;
+}
+
+
+/* Final scene */
+
+.final-scene p {
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* Mobile */
+
+@media (max-width: 500px) {
+
+    .scene-two,
+    .scene-three,
+    .final-scene {
+        padding: 0 10px;
+    }
+
+    .three-words {
+        gap: 8px;
+        margin: 25px 0;
+    }
+
+    .three-words span {
+        padding: 10px 14px;
+        font-size: 13px;
+    }
+
+    .scene-three p,
+    .final-scene p,
+    #sceneMessage {
+        font-size: 16px;
+    }
+
+}
+/* ========================================
+   VISIBLE OPENING ANIMATIONS
+======================================== */
+
+.welcome {
+    animation: welcomeZoom 1.2s ease both;
+}
+
+.welcome .small-text {
+    animation: textUp 1s ease .2s both;
+}
+
+.welcome h1 {
+    animation: textUp 1s ease .4s both;
+}
+
+.welcome p {
+    animation: textUp 1s ease .6s both;
+}
+
+.welcome #openBtn {
+    animation: buttonUp 1s ease .8s both;
+}
+
+
+/* Main entrance */
+
+@keyframes welcomeZoom {
+    from {
+        opacity: 0;
+        transform: scale(0.94);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* Text entrance */
+
+@keyframes textUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Button entrance */
+
+@keyframes buttonUp {
+    from {
+        opacity: 0;
+        transform: translateY(35px) scale(.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* Glowing Miracle name */
+
+.welcome h1 span {
+    animation: nameGlow 2.5s ease-in-out infinite;
+}
+
+@keyframes nameGlow {
+
+    0%, 100% {
+        filter: drop-shadow(0 0 0 transparent);
+    }
+
+    50% {
+        filter: drop-shadow(
+            0 0 20px rgba(255, 79, 216, .7)
+        );
+    }
+
+}
+
+
+/* Floating heart */
+
+.welcome::after {
+    content: "♡";
+
+    position: absolute;
+
+    top: 20%;
+    right: 15%;
+
+    font-size: 32px;
+
+    color: #ff4fd8;
+
+    opacity: .7;
+
+    animation: heartFloat 3s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+@keyframes heartFloat {
+
+    0%, 100% {
+        transform: translateY(0) rotate(-10deg);
+        opacity: .3;
+    }
+
+    50% {
+        transform: translateY(-30px) rotate(10deg);
+        opacity: 1;
+    }
+
+}
+
+
+/* Floating star */
+
+.welcome::before {
+    content: "✦";
+
+    position: absolute;
+
+    bottom: 20%;
+    left: 15%;
+
+    font-size: 25px;
+
+    color: #00d9ff;
+
+    opacity: .7;
+
+    animation: starFloat 4s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+@keyframes starFloat {
+
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-25px) rotate(180deg);
+    }
+
+}
+#sceneMessage {
+    animation: messageAppear 1s ease 1.8s both;
+}
+
+@keyframes messageAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+/* ========================================
+   SCENE 2 WORD REVEAL - FIXED
+======================================== */
+
+.three-words {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+
+    margin: 35px 0;
+
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.three-words span {
+    display: inline-block;
+
+    padding: 12px 18px;
+
+    border-radius: 50px;
+
+    border: 1px solid rgba(155, 92, 255, .4);
+
+    background: rgba(155, 92, 255, .1);
+
+    color: #d6c3ff;
+
+    opacity: 0;
+
+    transform: translateY(25px) scale(.85);
+
+    animation: miracleWord .8s ease forwards;
+}
+
+.three-words span:nth-child(1) {
+    animation-delay: .2s;
+}
+
+.three-words span:nth-child(2) {
+    animation-delay: .8s;
+}
+
+.three-words span:nth-child(3) {
+    animation-delay: 1.4s;
+}
+
+@keyframes miracleWord {
+
+    0% {
+        opacity: 0;
+        transform: translateY(25px) scale(.85);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translateY(-5px) scale(1.05);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* Message underneath */
+
+#sceneMessage {
+    opacity: 0;
+    animation: miracleMessage 1s ease 2.1s forwards;
+}
+
+@keyframes miracleMessage {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+/* ========================================
+   SCENE 3 REVEAL
+======================================== */
+
+.scene-three {
+    animation: sceneThreeReveal 1.2s ease both;
+}
+
+.scene-three .tiny-label {
+    animation: textUp 1s ease .2s both;
+}
+
+.scene-three h2 {
+    animation: textUp 1s ease .4s both;
+}
+
+.scene-three p {
+    animation: textUp 1s ease .7s both;
+}
+
+.scene-three button {
+    animation: buttonUp 1s ease 1s both;
+}
+
+@keyframes sceneThreeReveal {
+
+    from {
+        opacity: 0;
+        transform: scale(.92);
+        filter: blur(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+
+}
+/* ========================================
+   FINAL HEARTS
+======================================== */
+
+.final-heart {
+    position: fixed;
+
+    bottom: -30px;
+
+    font-size: 18px;
+
+    color: #ff4fd8;
+
+    pointer-events: none;
+
+    z-index: 1;
+
+    animation: heartRise 6s linear forwards;
+}
+
+@keyframes heartRise {
+
+    0% {
+        transform:
+            translateY(0)
+            translateX(0)
+            scale(.7)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    15% {
+        opacity: .7;
+    }
+
+    70% {
+        opacity: .45;
+    }
+
+    100% {
+        transform:
+            translateY(-110vh)
+            translateX(60px)
+            scale(1.2)
+            rotate(25deg);
+
+        opacity: 0;
+    }
+
+}
+/* ========================================
+   PHONE / MOBILE POLISH
+======================================== */
+
+@media (max-width: 600px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .welcome {
+        min-height: 100svh;
+        padding: 25px 20px;
+    }
+
+    .small-text {
+        font-size: 10px;
+        letter-spacing: 2px;
+        margin-bottom: 18px;
+    }
+
+    h1 {
+        font-size: clamp(42px, 13vw, 58px);
+        letter-spacing: -2px;
+        line-height: 1.05;
+    }
+
+    .welcome p {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    #openBtn,
+    .scene-two button,
+    .scene-three button,
+    .final-scene button {
+        padding: 14px 22px;
+        font-size: 14px;
+    }
+
+
+    /* Scene 2 */
+
+    .scene-two h2 {
+        font-size: clamp(32px, 9vw, 48px);
+        line-height: 1.15;
+        min-height: auto;
+    }
+
+    .three-words {
+        gap: 8px;
+        margin: 25px 0;
+    }
+
+    .three-words span {
+        padding: 9px 13px;
+        font-size: 12px;
+    }
+
+    #sceneMessage {
+        font-size: 16px;
+        line-height: 1.7;
+        margin-bottom: 25px;
+    }
+
+
+    /* Scene 3 */
+
+    .scene-three h2 {
+        font-size: clamp(35px, 10vw, 52px);
+        line-height: 1.1;
+    }
+
+    .scene-three p {
+        font-size: 16px;
+        line-height: 1.75;
+    }
+
+
+    /* Final */
+
+    .final-scene h1 {
+        font-size: clamp(38px, 11vw, 56px);
+        line-height: 1.08;
+    }
+
+    .final-scene p {
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+
+    /* Floating decorations */
+
+    .welcome::after {
+        top: 12%;
+        right: 8%;
+        font-size: 24px;
+    }
+
+    .welcome::before {
+        bottom: 15%;
+        left: 8%;
+        font-size: 20px;
+    }
+
+}
+/* ========================================
+   CINEMATIC FINAL SCENE
+======================================== */
+
+.final-scene {
+    position: relative;
+    z-index: 5;
+    padding: 40px 20px;
+}
+
+
+/* Dreamy glowing background */
+
+body.final-background {
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(155, 92, 255, .28),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(255, 79, 216, .20),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(0, 217, 255, .12),
+            transparent 25%
+        ),
+        #070710;
+
+    animation: finalBackground 8s ease-in-out infinite alternate;
+}
+
+@keyframes finalBackground {
+    from {
+        background-position: 50% 40%;
+    }
+
+    to {
+        background-position: 50% 55%;
+    }
+}
+
+
+/* Giant glowing heart frame */
+
+.final-scene::before {
+    content: "♡";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -52%);
+
+    width: 620px;
+    height: 620px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 600px;
+    line-height: 1;
+
+    color: transparent;
+
+    -webkit-text-stroke: 2px rgba(255, 79, 216, .35);
+
+    filter:
+        drop-shadow(0 0 15px rgba(255, 79, 216, .45))
+        drop-shadow(0 0 45px rgba(155, 92, 255, .25));
+
+    pointer-events: none;
+
+    z-index: -1;
+
+    animation: heartPulse 4s ease-in-out infinite;
+}
+
+@keyframes heartPulse {
+
+    0%, 100% {
+        transform:
+            translate(-50%, -52%)
+            scale(.96);
+
+        opacity: .55;
+    }
+
+    50% {
+        transform:
+            translate(-50%, -52%)
+            scale(1.04);
+
+        opacity: 1;
+    }
+
+}
+
+
+/* Glowing orb behind everything */
+
+.final-scene::after {
+    content: "";
+
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    background: rgba(255, 79, 216, .12);
+
+    border-radius: 50%;
+
+    filter: blur(70px);
+
+    z-index: -2;
+
+    animation: orbPulse 3s ease-in-out infinite;
+}
+
+@keyframes orbPulse {
+
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(.8);
+        opacity: .4;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: .9;
+    }
+
+}
+
+
+/* Final heading glow */
+
+.final-scene h1 {
+    text-shadow:
+        0 0 10px rgba(255,255,255,.15),
+        0 0 35px rgba(255,79,216,.15);
+}
+
+.final-scene h1 span {
+    text-shadow:
+        0 0 15px rgba(255,79,216,.45),
+        0 0 40px rgba(255,79,216,.2);
+}
+
+
+/* Tiny glowing divider */
+
+.final-scene .tiny-label::after {
+    content: "♥";
+
+    display: block;
+
+    margin: 14px auto 0;
+
+    font-size: 18px;
+
+    color: #ff4fd8;
+
+    text-shadow:
+        0 0 10px #ff4fd8,
+        0 0 25px #ff4fd8;
+
+    animation: tinyHeart 2s ease-in-out infinite;
+}
+
+@keyframes tinyHeart {
+
+    0%, 100% {
+        transform: scale(.8);
+        opacity: .5;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+
+}
+
+
+/* Final button glow */
+
+#talkBtn {
+    box-shadow:
+        0 0 15px rgba(255,79,216,.35),
+        0 0 35px rgba(255,79,216,.18),
+        0 0 70px rgba(155,92,255,.12);
+
+    animation:
+        buttonUp 1s ease 1.4s both,
+        finalButtonPulse 2.5s ease-in-out 2s infinite;
+}
+
+@keyframes finalButtonPulse {
+
+    0%, 100% {
+        box-shadow:
+            0 0 15px rgba(255,79,216,.35),
+            0 0 35px rgba(255,79,216,.18);
+    }
+
+    50% {
+        box-shadow:
+            0 0 25px rgba(255,79,216,.65),
+            0 0 60px rgba(255,79,216,.3),
+            0 0 100px rgba(155,92,255,.15);
+    }
+
+}
+
+
+/* Extra floating sparkles */
+
+.final-spark {
+    position: fixed;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    box-shadow:
+        0 0 8px white,
+        0 0 18px #ff4fd8;
+
+    pointer-events: none;
+
+    z-index: 2;
+
+    animation: sparkleFloat 5s linear forwards;
+}
+
+@keyframes sparkleFloat {
+
+    0% {
+        transform:
+            translateY(30px)
+            scale(.2);
+
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: .8;
+    }
+
+    100% {
+        transform:
+            translateY(-100vh)
+            scale(1.5);
+
+        opacity: 0;
+    }
+
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .final-scene::before {
+        width: 360px;
+        height: 360px;
+
+        font-size: 350px;
+
+        transform: translate(-50%, -50%);
+    }
+
+    .final-scene::after {
+        width: 200px;
+        height: 200px;
+    }
+
+}
+/* ========================================
+   FINAL CINEMATIC TRANSITION
+======================================== */
+
+.final-scene {
+    animation:
+        finalEntrance 1.5s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes finalEntrance {
+
+    0% {
+        opacity: 0;
+        transform: scale(.65);
+        filter: blur(18px);
+    }
+
+    55% {
+        opacity: 1;
+        transform: scale(1.04);
+        filter: blur(0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+
+}
